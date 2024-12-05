@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service | Le Panier De Tchaly</title>
+
+    <!-- Linking External Stylesheets -->
+    <link rel="stylesheet" href="styles.css"> <!-- External Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> <!-- Font Awesome Icons -->
+
+    <style>
+        /* General Reset for Common Elements */
+        body, h1, h2, h3, p, ul, li, a {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif; /* Font for the body */
+            line-height: 1.6; /* Line spacing for readability */
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            background: #444; /* Dark background for the nav */
+            padding: 10px; /* Spacing within the nav */
+            display: flex; /* Flexbox for aligning items */
+            justify-content: left; /* Align items to the left */
+        }
+
+        nav a {
+            color: white; /* Text color */
+            margin: 0 10px; /* Space between nav items */
+            padding: 8px 16px; /* Padding around the text */
+            transition: background 0.3s; /* Smooth background transition on hover */
+        }
+
+        /* Active and Hover Styles for Links */
+        nav a:hover, nav a.active {
+            background: #f4a261; /* Light orange background on hover */
+        }
+
+        /* Hero Section Styling */
+        .hero {
+            background: #f4f4f4; /* Light background */
+            text-align: center; /* Center-align text */
+            padding: 50px 20px; /* Add spacing inside the hero section */
+        }
+
+        .hero h1 {
+            color: #333; /* Dark text color for the heading */
+        }
+
+        .hero p {
+            color: #555; /* Slightly lighter text color for paragraph */
+        }
+
+        /* Service Section Styling */
+        .service-section {
+            display: grid; /* Grid layout for service cards */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between grid items */
+            padding: 40px; /* Spacing inside the service section */
+            background: #e4e4e4; /* Light gray background */
+        }
+
+        /* Individual Service Card Styling */
+        .service {
+            text-align: center; /* Center align content in the card */
+            padding: 20px; /* Padding inside the service card */
+            background: white; /* White background for each card */
+            border-radius: 10px; /* Rounded corners for the card */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around each card */
+        }
+
+        .service i {
+            font-size: 40px; /* Large icon size */
+            color: #f4a261; /* Matching icon color */
+            margin-bottom: 10px; /* Space between icon and text */
+        }
+
+        /* FAQ Section Styling */
+        .faq-section div {
+            display: flex; /* Flex layout for the search input and button */
+            justify-content: center; /* Center align the items */
+            align-items: center; /* Vertically center items */
+            margin-top: 20px; /* Space above the section */
+        }
+
+        .search-input {
+            width: 500px; /* Fixed width for search input */
+            padding: 10px; /* Padding inside input field */
+            border: 1px solid #ccc; /* Light border around input */
+            border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+            font-size: 16px; /* Font size for text */
+        }
+
+        .search-button {
+            padding: 10px 20px; /* Padding inside the button */
+            border: none; /* No border for the button */
+            background-color: #f4a261; /* Matching orange background */
+            color: white; /* White text */
+            font-size: 16px; /* Font size for text */
+            font-weight: bold; /* Bold text */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+
+        /* Button Hover Effect */
+        .search-button:hover {
+            background-color: #e76f51; /* Slightly darker background on hover */
+        }
+
+        /* Focus Styling for Search Input */
+        .search-input:focus {
+            outline: none; /* Remove default outline */
+            border-color: #f4a261; /* Change border color when focused */
+        }
+
+        /* FAQ Section Heading */
+        .faq h3 {
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333; /* Dark background for the footer */
+            color: white; /* White text color */
+            text-align: center !important; /* Center-align footer content */
+            padding: 10px 0; /* Padding inside footer */
+            position: relative; /* Footer is positioned relative */
+            bottom: -280px; /* Negative margin to push footer down */
+            width: 100%; /* Full width for the footer */
+        }
+
+        footer h3 {
+            margin-bottom: 10px; /* Space below the heading in footer */
+        }
+
+        /* Social Links Styling */
+        .social-link {
+            color: white; /* White text color for social links */
+            margin-right: 10px; /* Space between social icons */
+        }
+
+        /* Hover Effect for Social Links */
+        .social-link:hover {
+            color: #f4a261; /* Change color on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <!-- Links to different sections of the website -->
+        <a href="index.html">Home</a>
+        <a href="customer service.html" class="active">Customer Service</a>
+        <a href="About us.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="today's deals.html">Today's Deals</a>
+        <a href="blog.html">Blog</a>
+    </nav>
+
+    <!-- Hero Section for Customer Service -->
+    <section class="hero">
+        <h1>Customer Service</h1>
+        <p>We're here to assist you with any questions or issues you may have. Our support team is available to ensure your shopping experience is smooth and enjoyable.</p>
+    </section>
+
+    <!-- Service Section with Key Offerings -->
+    <section class="service-section">
+        <div class="service">
+            <i class="fa-solid fa-truck"></i>
+            <h3>Shipping Information</h3>
+            <p>Learn about our shipping methods, costs, and delivery times. We strive to get your orders delivered on time.</p>
+        </div>
+        <div class="service">
+            <i class="fa-solid fa-box-open"></i>
+            <h3>Returns & Refunds</h3>
+            <p>Not satisfied with your purchase? Check out our hassle-free returns and refund policy.</p>
+        </div>
+        <div class="service">
+            <i class="fa-solid fa-phone"></i>
+            <h3>Contact Us</h3>
+            <p>Reach out to our customer support team for any inquiries or assistance needed.</p>
+        </div>
+        <div class="service">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Privacy & Security</h3>
+            <p>Your personal information is important to us. Read more about how we ensure your data is secure.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section with Search Feature -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div>
+            <!-- Search Input for FAQs -->
+            <input type="text" placeholder="Search FAQs" class="search-input">
+            <button class="search-button">Search</button>
+        </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Le Panier De Tchaly. All Rights Reserved.</p>
+        <a href="#PrivacyPolicy">Privacy Policy</a>
+    </footer>
+</body>
+</html>
