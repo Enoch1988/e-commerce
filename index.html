@@ -19,91 +19,64 @@
     <canvas id="bannerCanvas"></canvas> <!-- Banner Canvas for animations or graphics -->
 
     <style>
-        /* Styling for the navigation bar */
+        /* Navigation Styles */
         nav {
-            background: #444;
-            padding: 10px;
+            background-color: #444;
             display: flex;
-            justify-content: left;
+            align-items: center;
+            padding: 10px;
+            position: sticky; /* Makes the nav bar stick */
+        top: 0; /* Stick to the top of the screen */
+        z-index: 1000; /* Ensures it stays on top of other elements */
         }
 
-        /* Styling for navigation links */
         nav a {
             color: white;
             margin: 0 10px;
             padding: 8px 16px;
+            text-decoration: none;
             transition: background 0.3s;
         }
 
-        /* Hover effect for links */
         nav a:hover, nav a.active {
-            background: #f4a261;
+            background-color: #f4a261;
         }
 
-        /* Styling for the search container */
-        nav .search-container {
+        .search-container {
             display: flex;
             align-items: center;
-            margin-left: 20px;
+            margin-left: auto;
         }
 
-        /* Search input field styling */
         .search-input {
-            padding: 8px;
+            padding: 8px 15px;
             border: 2px solid #ccc;
             border-radius: 20px 0 0 20px;
             font-size: 16px;
-            width: 500px;
-            margin-right: 5px;
+            flex: 1;
         }
 
-        /* Search button styling */
         .search-button {
             padding: 8px 15px;
-            border: none;
             background-color: #f4a261;
             color: white;
-            font-size: 16px;
-            font-weight: bold;
+            border: none;
             border-radius: 0 20px 20px 0;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            border: 2px solid #ccc;
         }
 
-        /* Hover effect for search button */
-        .search-button:hover {
-            background-color: #e76f51;
-        }
-
-        /* Focus styling for the search input */
-        .search-input:focus {
-            outline: none;
-            border-color: #f4a261;
-        }
-
-        /* Styling for the shopping cart icon */
         .cart-container {
             position: relative;
-            display: inline-block;
             margin-left: 20px;
         }
 
-        /* Cart link styling */
-        .cart-link {
-            color: white;
-            font-size: 20px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Styling for the cart item count */
         .cart-count {
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: #e76f51;
-            color: white;
+            background: #e76f51;
+            color: #fff;
             font-size: 14px;
             font-weight: bold;
             border-radius: 50%;
@@ -114,9 +87,48 @@
             align-items: center;
         }
 
-        .cart-link:hover .cart-count {
-            background-color: #f4a261;
+        /* Product Section */
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            padding-top: 50px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
         }
+
+        .procat {
+            text-align: center;
+            flex: 1 1 calc(25% - 20px);
+            box-sizing: border-box;
+        }
+
+        .procat img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        footer .footer-section1, footer .footer-section2, footer .footer-section3, footer .footer-section4 {
+            margin: 10px 0;
+        }
+
+        /* Footer links and social media icons */
+        footer a {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        footer a:hover {
+            color: #f4a261;
+        }
+
+        .linkedin-link {
+            margin: 0 10px;
+        }
+
+
     </style>
 
 </head>
@@ -149,7 +161,7 @@
     <!-- Image Carousel (Optional) -->
     <div class="carousel">
         <div class="carousel-images">
-            <img src="images/Director/360_F_241431868_8DFQpCcmpEPVG0UvopdztOAd4a6Rqsoo.jpg" alt="Slide 3">
+            <img src="images/Director/360_F_241431868_8DFQpCcmpEPVG0UvopdztOAd4a6Rqsoo.jpg" alt="">
         </div>
     </div>
 

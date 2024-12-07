@@ -44,7 +44,7 @@
         }
 
         .container {
-            padding: 20px;
+            padding: 0px;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
@@ -135,6 +135,8 @@ body {
 .carousel-images img {
     width: 100%; /* Ensure images scale properly */
     height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    padding: 30px 300px 20px;
 }
 
 .carousel-buttons {
@@ -384,4 +386,12 @@ footer a:hover {
 
 .cart-link:hover .cart-count {
     background-color: #f4a261;
+}
+@media (max-width: 768px) {
+    .deal-item {
+        min-width: 150px; /* Reduce size on smaller screens */
+    }
+    .arrow {
+        padding: 8px; /* Smaller arrows for mobile */
+    }
 }
