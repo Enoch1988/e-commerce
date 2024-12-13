@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags for character encoding, viewport settings, and compatibility -->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Title of the webpage -->
     <title>Le Panier De Tchaly</title>
 
-    <!-- External Stylesheets -->
-    <link rel="stylesheet" href="style.css"> <!-- Custom styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> <!-- Font Awesome for icons -->
-
-    <!-- Bulma CSS Framework (for responsive design and UI components) -->
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 
-    <canvas id="bannerCanvas"></canvas> <!-- Banner Canvas for animations or graphics -->
-
+    <!-- Internal CSS -->
     <style>
-        /* Navigation Styles */
-        nav {
+        /* General Styles */
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+         /* Navigation Styles */
+         nav {
             background-color: #444;
             display: flex;
             align-items: center;
             padding: 10px;
             position: sticky; /* Makes the nav bar stick */
-        top: 0; /* Stick to the top of the screen */
-        z-index: 1000; /* Ensures it stays on top of other elements */
+            top: 0; /* Stick to the top of the screen */
+            z-index: 1000; /* Ensures it stays on top of other elements */
+            position: sticky;
         }
 
         nav a {
@@ -40,28 +41,76 @@
 
         nav a:hover, nav a.active {
             background-color: #f4a261;
+            border-radius: 5px;
+        }
+
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    transition: background 0.3s;
+}
+
+        .nav-toggle {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #444;
+                position: absolute;
+                top: 60px;
+                right: 10px;
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+            
         }
 
         .search-container {
             display: flex;
             align-items: center;
-            margin-left: auto;
+           
         }
 
         .search-input {
-            padding: 8px 15px;
+            padding: 8px;
             border: 2px solid #ccc;
-            border-radius: 20px 0 0 20px;
+            border-radius: 5px 0 0 5px;
             font-size: 16px;
             flex: 1;
         }
 
         .search-button {
-            padding: 8px 15px;
+            padding: 8px;
             background-color: #f4a261;
             color: white;
             border: none;
-            border-radius: 0 20px 20px 0;
+            border-radius: 0 5px 5px 0;
             cursor: pointer;
             border: 2px solid #ccc;
         }
@@ -74,10 +123,10 @@
         .cart-count {
             position: absolute;
             top: -5px;
-            right: -5px;
+            right: -10px;
             background: #e76f51;
             color: #fff;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
             border-radius: 50%;
             width: 20px;
@@ -87,61 +136,332 @@
             align-items: center;
         }
 
-        /* Product Section */
-        .products-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-            padding-top: 50px;
-            background-color: #f9f9f9;
-            margin-top: 20px;
+        header {
+    background-color: #232f3e;
+    color: #f08804;
+    padding: 120px;
+    text-align: center;
+    background-image: url('images/DALL·E\ 2024-12-11\ 16.34.56\ -\ A\ professional\ online\ webpage\ design\ for\ \'Le\ Panier\ De\ Tchaly\'\,\ featuring\ sections\ for\ various\ categories.\ The\ webpage\ should\ have\ a\ clean\,\ modern\ loo.webp');
+    background-size: cover; /* Ensures the image covers the header */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
         }
 
-        .procat {
-            text-align: center;
-            flex: 1 1 calc(25% - 20px);
-            box-sizing: border-box;
+        /* Categories Bar */
+        .categories {
+            background-color: #f7f7f7;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
-        .procat img {
-            max-width: 100%;
-            border-radius: 10px;
+        .categories a {
+            display: inline-block;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        footer .footer-section1, footer .footer-section2, footer .footer-section3, footer .footer-section4 {
+        .categories a:hover {
+            background-color: #232f3e;
+            color: white;
+        }
+
+        /* Style the scrollbar for Webkit-based browsers (Chrome, Edge, Safari) */
+    .categories::-webkit-scrollbar {
+        height: 8px; /* Height of the scrollbar */
+    }
+
+    .categories::-webkit-scrollbar-thumb {
+        background-color: #888; /* Thumb color */
+        border-radius: 4px; /* Round scrollbar corners */
+    }
+
+    .categories::-webkit-scrollbar-track {
+        background-color: #f9f9f9; /* Track color */
+    }
+    .category0 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: calc(100% - 80px); /* Account for arrow button widths */
+    margin: 0 auto;
+}
+
+.cat1 {
+    flex: 0 0 auto; /* Prevent shrinking and keep items in a row */
+    width: 200px; /* Adjust width as needed */
+    margin: 10px;
+    text-align: center;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.arrow {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.arrow.left {
+    left: 10px;
+}
+
+.arrow.right {
+    right: 10px;
+}
+
+.cat1 {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: 300px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  color: #555;
+
+}
+.cat1 .a:hover {
+  background-color: #c97400;
+  opacity: 0.8;
+}
+
+.cat1 .h2{
+    color: #555;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+.scrollable-category0-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+.arrow {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+        /* Deals Section */
+        .deals-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+            padding-right: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .deal-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            display: grid;
+        }
+
+        .deal-card:hover {
+            transform: scale(1.03);
+        }
+
+        .deal-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .deal-card-content {
+            padding: 15px;
+        }
+
+        .deal-card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .deal-card-content p {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .deal-card-content .price {
+            font-size: 1.2rem;
+            color: #b12704;
             margin: 10px 0;
         }
 
-        /* Footer links and social media icons */
-        footer a {
+        .deal-card-content button {
+            background-color: #f08804;
             color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .deal-card-content button:hover {
+            background-color: #c97400;
+        }
+
+        /* Pre Footer Section */ 
+
+        .prefooter{
+            text-align: center;
+            color:  #444;
+            padding: 30px;
+            background-color: #ccc;
+        }
+
+        .prefooter1 {
+            background-color: #f08804;
+            color: white;
+            border: none;
+            padding: 10px 50px;
+            border-radius: 5px;
+            cursor: pointer;
+            cursor: pointer;
+        }
+
+         /* Footer Section */
+         
+        .prefooter a{
+            color: #f08804;
             text-decoration: none;
-            padding: 5px;
+
+        }
+        .prefooter a:hover{
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #f08804;
+            text-decoration: none;
         }
 
         footer a:hover {
-            color: #f4a261;
+            text-decoration: underline;
         }
 
-        .linkedin-link {
-            margin: 0 10px;
+        
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .categories a {
+                font-size: 0.8rem;
+                margin: 0 5px;
+                padding: 3px 8px;
+            }
+
+            .deal-item h3 {
+                font-size: 1rem;
+            }
         }
 
-
+        @media (max-width: 480px) {
+            .deals-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
     </style>
-
 </head>
 <body>
-
-    <!-- Navigation Bar -->
     <nav>
+        
+        <span class="nav-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </span>
+    
+        <div class="nav-links" id="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="customer service.html">Customer Service</a>
         <a href="About us.html">About Us</a>
         <a href="contact.html">Contact</a>
         <a href="today's deals.html">Today's Deals</a>
         <a href="blog.html">Blog</a>
+    </div>
 
         <!-- Search Bar Container -->
         <div class="search-container">
@@ -151,186 +471,221 @@
 
         <!-- Shopping Cart Icon with dynamic item count -->
         <div class="cart-container">
-            <a href="cart.html" class="cart-link">
+            <a href="cart.html">
                 <i class="fa fa-shopping-cart"></i>
                 <span class="cart-count">0</span> <!-- Replace with dynamic item count -->
             </a>
+            
         </div>
     </nav>
+    <!-- Header Section -->
+    <header>
+        <h1></h1>
+    </header>
 
-    <!-- Image Carousel (Optional) -->
-    <div class="carousel">
-        <div class="carousel-images">
-            <img src="images/Director/360_F_241431868_8DFQpCcmpEPVG0UvopdztOAd4a6Rqsoo.jpg" alt="">
-        </div>
+    <!-- Categories Section -->
+    <div class="categories">
+        <a href="#">Electronics</a>
+        <a href="#">Home Appliances</a>
+        <a href="#">Fashion</a>
+        <a href="#">Beauty</a>
+        <a href="#">Toys</a>
+        <a href="#">Sports</a>
+        <a href="#">Books</a>
+        <a href="#">Automotive</a>
+        <a href="#">More</a>
     </div>
 
-    <!-- Product Grid Section -->
-    <div class="container" id="products">
-        <!-- Individual product display -->
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
+    <div class="category0">
+        <div class="carousel-container">
+            <button class="arrow left" onclick="scrollLeft()">&#10094;</button>
+        <div class="cat1">
+          <h2>Shop Electronics</h2>
+          <a href="#" class="discover-more">Discover more</a>
         </div>
-        <!-- More products follow... -->
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
+        <div class="cat1">
+            <h2>Shop Electronics</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+          <div class="cat1">
+            <h2>Shop Electronics</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+          <div class="cat1">
+            <h2>Shop Electronics</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+        <div class="cat1">
+          <h2>Shop Braai & Outdoor Dining</h2>
+          <a href="#" class="shop-now">Discover more</a>
         </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
+        <div class="cat1">
+          <h2>Shop Camera & Photo</h2>
+          <a href="#" class="discover-more">Discover more</a>
         </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/200" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>$10.00</p>
-            <button>Add to Cart</button>
-        </div>
-    </div>
+        <div class="cat1">
+            <h2>Shop Camera & Photo</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+          <div class="cat1">
+            <h2>Shop Camera & Photo</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+        <button class="arrow right" onclick="scrollRight()">&#10095;</button>
+      </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-section1">
-            <img src="images/IMG-20240928-WA0006.jpg" alt="Le Panier De Tchaly" class="footer-logo">
-            <p>
-                We’re a team of Ecommerce experts 
-                <br>dedicated to helping businesses 
-                <br>launch and grow on Amazon.
-            </p>
+    <!-- Deals Section -->
+    <div class="deals-container">
+        <!-- Sample Deal Card -->
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$19.99</div>
+                <button>Add to Cart</button>
+            </div>
         </div>
 
-        <div class="footer-section2">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="About us.html">About Us</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="today's deals.html">Today's Deals</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section3">
-            <h3>Important Links</h3>
-            <ul>
-                <li><a href="#setup">Kick off and Setup</a></li>
-                <li><a href="#paid">Paid Advertising</a></li>
-                <li><a href="#account-management">Ongoing Account Management</a></li>
-                <li><a href="#privacy">Privacy Policy</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section4">
-            <h3>Let’s Connect!</h3>
-            <p>
-                Connect with us 
-                <br>just by a simple click we
-                <br>deliver your parcel just
-                on time
-            </p>
-            <!-- Social Media Links -->
-            <a href="https://www.linkedin.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.facebook.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-square-instagram"></i></a>
-            <a href="https://www.twitter.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-square-x-twitter"></i></a>
+        <!-- Add more deal cards as needed -->
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$29.99</div>
+                <button>Add to Cart</button>
+            </div>
+            
         </div>
         
-        <!-- Footer copyright and privacy link -->
-        <p>&copy; 2024 Le Panier De Tchaly Store. All rights reserved.</p>
-        <a href="#PrivacyPolicy">Privacy Policy</a>
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$29.99</div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$29.99</div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$29.99</div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$29.99</div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$29.99</div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="deal-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product Image">
+            <div class="deal-card-content">
+                <h3>Product Name</h3>
+                <p>Short description of the product goes here.</p>
+                <div class="price">$39.99</div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="category0">
+        <div class="carousel-container">
+            <button class="arrow left" onclick="scrollLeft()">&#10094;</button>
+        <div class="cat1">
+          <h2>Shop Electronics</h2>
+          <a href="#" class="discover-more">Discover more</a>
+        </div>
+        <div class="cat1">
+            <h2>Shop Electronics</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+          <div class="cat1">
+            <h2>Shop Electronics</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+          <div class="cat1">
+            <h2>Shop Electronics</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+        <div class="cat1">
+          <h2>Shop Braai & Outdoor Dining</h2>
+          <a href="#" class="shop-now">Discover more</a>
+        </div>
+        <div class="cat1">
+          <h2>Shop Camera & Photo</h2>
+          <a href="#" class="discover-more">Discover more</a>
+        </div>
+        <div class="cat1">
+            <h2>Shop Camera & Photo</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+          <div class="cat1">
+            <h2>Shop Camera & Photo</h2>
+            <a href="#" class="discover-more">Discover more</a>
+          </div>
+        <button class="arrow right" onclick="scrollRight()">&#10095;</button>
+      </div>
+
+      <!--Pre Footer-->
+
+      <div class="prefooter">
+        <h2>See personalised recommendations</h2>
+        <a href="Sign-in.html"><button class="prefooter1">sign in</button></a>
+        <h1>New customer? <a href="Sign-up.html">Start here.</a></h1>
+
+      </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p><a href="#">Back to top</a></p>
+        <p>&copy; 2024 Le Panier De Tchaly. All Rights Reserved. <a href="#">Privacy Policy</a></p>
     </footer>
 
-    <!-- External JavaScript File -->
-    <script src="/java.js"></script> 
 </body>
+<script>
+    const scrollAmount = 200; // Amount to scroll on each click
+const carousel = document.querySelector('.carousel');
+
+function scrollLeft() {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+}
+
+function scrollRight() {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+}
+function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+</script>
 </html>

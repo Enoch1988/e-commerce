@@ -7,46 +7,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Panier De Tchaly</title>
 
-    <!-- Link to external CSS for custom styles and Font Awesome for icons -->
+    <!-- Link to external CSS and Font Awesome for icons -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-    <!-- External Bulma CSS for responsive design and layout -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 
-    <!-- Canvas element for any potential banners or dynamic content -->
-    <canvas id="bannerCanvas"></canvas>
-
     <style>
-        /* Basic styling for the body, including font-family and margin/padding reset */
+        /* Reset and base styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
 
-        /* Navigation bar styling */
         nav {
-            background: #444; /* Dark background for navigation */
+            background: #444;
             padding: 10px;
             display: flex;
-            justify-content: left; /* Left align navigation links */
-            position: sticky; /* Makes the nav bar stick */
-        top: 0; /* Stick to the top of the screen */
-        z-index: 1000; /* Ensures it stays on top of other elements */
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        /* Navigation link styles */
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
         nav a {
             color: white;
-            margin: 0 10px;
             padding: 8px 16px;
-            transition: background 0.3s; /* Smooth transition on hover */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
-        /* Hover effect for navigation links */
         nav a:hover, nav a.active {
-            background: #f4a261; /* Light orange background on hover or active state */
+            background: #f4a261;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #444;
+                position: absolute;
+                top: 60px;
+                right: 10px;
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
         }
 
         /* Contact section styling */
@@ -56,21 +88,18 @@
             text-align: center;
         }
 
-        /* Heading styling within the contact section */
         .contact-section h2 {
             margin-bottom: 20px;
             font-size: 2rem;
             color: #333;
         }
 
-        /* Paragraph styling within the contact section */
         .contact-section p {
             margin-bottom: 30px;
             color: #666;
             font-size: 1rem;
         }
 
-        /* Contact form styling */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -80,7 +109,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Styling for input fields and textarea inside the contact form */
         .contact-form input,
         .contact-form textarea {
             width: 100%;
@@ -90,86 +118,72 @@
             border-radius: 5px;
         }
 
-        /* Button styling for form submission */
         .contact-form button {
             padding: 10px 20px;
-            background-color: #28a745; /* Green background */
+            background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        /* Hover effect for the submit button */
         .contact-form button:hover {
-            background-color: #218838; /* Darker green on hover */
+            background-color: #218838;
         }
 
-        /* Contact information section styling */
         .contact-info {
             margin-top: 30px;
         }
 
-        /* Styling for subheadings in the contact info */
         .contact-info h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
-        /* Paragraph styling for contact details */
         .contact-info p {
             color: #555;
         }
 
         /* Footer styling */
         footer {
-            text-align: center;
-            background-color: #444;
+            background-color: #232f3e;
             color: white;
-            padding: 10px;
+            text-align: center;
+            padding: 10px 0;
             margin-top: 20px;
         }
 
-        /* Footer sections */
-        footer .footer-section1, footer .footer-section2, footer .footer-section3, footer .footer-section4 {
-            margin: 10px 0;
-        }
-
-        /* Footer links and social media icons */
         footer a {
-            color: white;
+            color: #f08804;
             text-decoration: none;
-            padding: 5px;
         }
 
         footer a:hover {
-            color: #f4a261;
-        }
-
-        .linkedin-link {
-            margin: 0 10px;
+            text-decoration: underline;
         }
     </style>
-
 </head>
 <body>
-
-    <!-- Navigation bar with links to different pages -->
-    <nav>
+    <!-- Navigation bar -->
+    <nav aria-label="Main Navigation">
+        <span class="nav-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </span>
+        <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="customer service.html">Customer Service</a>
         <a href="About us.html">About Us</a>
         <a href="contact.html" class="active">Contact</a>
         <a href="today's deals.html">Today's Deals</a>
-        <a href="blog.html">Blog</a>     
+        <a href="blog.html">Blog</a>
+    </div>
     </nav>
 
-    <!-- Contact section with form and contact details -->
+    <!-- Contact section -->
     <section class="contact-section" id="Contact">
         <h2>Contact Us</h2>
         <p>We'd love to hear from you! Fill out the form below or reach out using the contact details provided.</p>
 
-        <!-- Contact form for users to submit inquiries -->
         <div class="contact-form">
             <form action="https://example.com/contact" method="POST">
                 <input type="text" name="name" placeholder="Your Name" required>
@@ -179,7 +193,6 @@
             </form>
         </div>
 
-        <!-- Display contact information (phone, email, address) -->
         <div class="contact-info">
             <h3>Contact Information</h3>
             <p><i class="fas fa-phone-alt"></i> Phone: +123 456 7890</p>
@@ -188,57 +201,17 @@
         </div>
     </section>
 
-    <!-- Footer section with company info, quick links, and social media -->
+    <!-- Footer -->
     <footer>
-        <div class="footer-section1">
-            <img src="images/IMG-20240928-WA0006.jpg" alt="Le Panier De Tchaly" class="footer-logo">
-            <p>
-                We’re a team of Ecommerce experts 
-                <br>dedicated to helping businesses 
-                <br>launch and grow on Amazon.
-            </p>
-        </div>
-        
-        <!-- Quick links for easy navigation -->
-        <div class="footer-section2">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="About us.html">About Us</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="today's deals.html">Today's Deals</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </div>
-
-        <!-- Important links for additional services and policies -->
-        <div class="footer-section3">
-            <h3>Important Links</h3>
-            <ul>
-                <li><a href="#setup">Kick off and Setup</a></li>
-                <li><a href="#paid">Paid Advertising</a></li>
-                <li><a href="#account-management">Ongoing Account Management</a></li>
-                <li><a href="#privacy">Privacy Policy</a></li>
-            </ul>
-        </div>
-
-        <!-- Social media section with clickable icons -->
-        <div class="footer-section4"> 
-            <h3>Let’s Connect!</h3>
-            <p>
-                Connect with us 
-                <br>just by a simple click we
-                <br>deliver your parcel just
-                on time  
-            </p>
-            <a href="https://www.linkedin.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.facebook.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-square-instagram"></i></a>
-            <a href="https://www.twitter.com" target="_blank" class="linkedin-link"><i class="fa-brands fa-square-x-twitter"></i></a>
-        </div>
-        
-        <!-- Copyright notice and privacy policy link -->
+       
         <p>&copy; 2024 Le Panier De Tchaly Store. All rights reserved.</p> 
         <a href="#PrivacyPolicy">Privacy Policy</a>
     </footer>
 </body>
+<script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('show');
+    }
+</script>
 </html>

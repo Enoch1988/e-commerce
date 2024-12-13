@@ -42,11 +42,44 @@
             margin: 0 10px; /* Space between nav items */
             padding: 8px 16px; /* Padding around the text */
             transition: background 0.3s; /* Smooth background transition on hover */
+            border-radius: 5px;
         }
 
         /* Active and Hover Styles for Links */
         nav a:hover, nav a.active {
             background: #f4a261; /* Light orange background on hover */
+            border-radius: 5px;
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #444;
+                position: absolute;
+                top: 60px;
+                right: 10px;
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
         }
 
         /* Hero Section Styling */
@@ -163,13 +196,18 @@
 <body>
     <!-- Navigation Bar -->
     <nav>
+        <span class="nav-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </span>
         <!-- Links to different sections of the website -->
+        <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="customer service.html" class="active">Customer Service</a>
         <a href="About us.html">About Us</a>
         <a href="contact.html">Contact</a>
         <a href="today's deals.html">Today's Deals</a>
         <a href="blog.html">Blog</a>
+        </div>
     </nav>
 
     <!-- Hero Section for Customer Service -->
@@ -214,8 +252,15 @@
     
     <!-- Footer Section -->
     <footer>
+       
         <p>&copy; 2024 Le Panier De Tchaly. All Rights Reserved.</p>
         <a href="#PrivacyPolicy">Privacy Policy</a>
     </footer>
 </body>
+<script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('show');
+    }
+</script>
 </html>
